@@ -1,0 +1,161 @@
+#main_logo { /* ���ηΰ� ��� ���� */
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	min-height: 100px;
+}
+
+#nav_dropDown {
+	padding-right: 5.5rem;
+	padding-left: 7.5rem;
+}
+
+#nav_dropDown_item {
+	padding-right: 0.5rem;
+	padding-left: 2.5rem;
+}
+
+#nav_searchbar_container {
+	padding-top: 5.0rem;
+	padding-left: 2rem;
+	padding-right: 20rem;
+}
+
+#nav_searchbar_box {
+	padding-left: 6.0rem;
+}
+
+#board_table {
+	padding-top: 3.0rem;
+	padding-left: 10.0rem;
+	padding-right: 10.0rem;
+	padding-bottom: 3.0rem;
+}
+
+#search_form {
+	padding-left: 1.0rem;
+	padding-right: 21.5rem;
+}
+
+#search_icon {
+	color: white;
+}
+
+#btn_writer {
+	margin-left: 1600px;
+}
+
+#btn_writing {
+	margin-left: 560px;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+.box_body {
+	padding-top: 3.0rem;
+	padding-left: 10.0rem;
+	padding-right: 10.0rem;
+	padding-bottom: 3.0rem;
+}
+
+.form-group {
+	border: 1px solid black;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.box-footer {
+	margin-left: 700px;
+}
+
+#input_userId {
+	width: 70%;
+	height: 34px;
+	padding: 6px 12px;
+	margin-right: 20px;
+}
+
+.div_user_info {
+	border: 1px solid black;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-top: 30px;
+	margin-left: 700px;
+	margin-right: 700px;
+}
+
+#btn_update_nick {
+	margin-left: 40%;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+#btn_reloadGrade {
+	margin-left: 40%;
+}
+
+#update_nick_Atag {
+	color: #FFFFFF;
+	border: 1px;
+	padding-right: 10%;
+}
+
+#update_passowrd {
+	color: #FFFFFF;
+	border: 1px;
+	padding-right: 10%;
+}
+
+#goto_myPost {
+	color: #FFFFFF;
+	border: 1px;
+	padding-right: 10%;
+}
+
+#delete_user {
+	color: #FFFFFF;
+	border: 1px;
+	padding-right: 10%;
+}
+
+#myinfo_box-footer {
+	margin-left: 42%;
+	margin-top: 20px;
+}
+
+#behinded_userid{
+	display : none;
+}
+#input_behinded_userid{
+	display : none;
+}
+
+#input_behinded_userpw{
+	display : none;
+}
+
+#input_behinded_userid2{
+	display : none;
+}
+
+#behind_bno{
+	display : none;
+}
+
+#Atag_modify{
+	color: #FFFFFF;
+	border: 1px;
+	padding-right: 10%;
+}
+#input_behinded_bno{
+	display : none;
+}
+
+#perPage_dropDown{
+	padding-left:89%;
+}

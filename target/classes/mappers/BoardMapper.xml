@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.spring.mapper.BoardMapper">
+	<insert id="create">
+		insert into tbl_board (title, content, user_id, category) values(#{title}, #{content},
+		#{user_id}, #{category})
+	</insert>
+
+	<select id="read" resultType="org.spring.domain.BoardVO">
+		select bno, category, title, content, user_id, board_reg_date, view_cnt
+		from tbl_board
+		where bno = #{bno}
+	</select>
+
+	<update id="update">
+		update tbl_board set title = #{title}, content = #{content}
+		where bno = #{bno}
+	</update>
+
+	<delete id="delete">
+		delete from tbl_board where bno = #{bno}
+	</delete>
+
+
+	<select id="listpage" resultType="org.spring.domain.BoardVO">
+		<![CDATA[
+	select category, title, content, user_id, board_reg_date, viewcnt from tbl_board where bno > 0 order by bno desc, board_reg_date desc limit #{page}, 10
+	]]>
+	</select>
+
+	<select id="listCriteria" resultType="org.spring.domain.BoardVO">
+	<![CDATA[
+	select bno, category, title, user_id,  board_reg_date, view_cnt from tbl_board where bno > 0 order by bno desc, board_reg_date desc limit #{pageStart}, #{perPageNum}
+	]]>
+	</select>
+
+	<select id="countPaging" resultType="int">
+	<![CDATA[
+		select count(bno) from tbl_board where bno > 0
+		]]>
+	</select>
+	
+	<select id="listSearch" resultType="org.spring.domain.BoardVO">
+	<![CDATA[
+		select * from tbl_board where bno > 0
+	]]>
+	<include refid="search"></include>
+		<![CDATA[
+		order by bno desc limit #{pageStart}, #{perPageNum}
+	]]>
+	</select>
+	
+	<select id="listSearchCount" resultType="int">
+	<![CDATA[
+		select count(bno) from tbl_board where bno > 0
+	]]>
+	<include refid="search"></include>
+	</select>
+	
+	<update id="increseReadNum">
+		UPDATE tbl_board SET view_cnt = view_cnt+1 WHERE bno = #{bno}
+	</update>
+	
+	<select id="showViewCount" resultType="org.spring.domain.BoardVO">
+		select view_cnt where bno =#{bno} 
+	</select>
+	
+	
+		
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and title like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'c'.toString()">
+				and content like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'w'.toString()">
+				and user_id like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				and (title like CONCAT('%', #{keyword}, '%') OR content like CONCAT('%', #{keyword}, '%'))
+			</if>
+			<if test="searchType == 'cw'.toString()">
+				and (content like CONCAT('%', #{keyword}, '%') OR user_id like CONCAT('%', #{keyword}, '%')) 
+			</if>
+			<if test="searchType == 'tcw'.toString()">
+				and (title like CONCAT('%', #{keyword}, '%') OR content like CONCAT('%', #{keyword}, '%') OR user_id like CONCAT('%', #{keyword}, '%')) 
+			</if>
+		</if>
+	</sql>
+
+
+</mapper>

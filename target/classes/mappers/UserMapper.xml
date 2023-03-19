@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.spring.mapper.UserMapper">
+
+	<select id="login" resultType="org.spring.domain.UserVO">
+		select user_id, user_pw, user_grade from
+		tbl_user where user_id= #{user_id} and user_pw = MD5(#{user_pw})
+	</select>
+
+	<update id="keepLogin">
+		update tbl_user set session = #{sessionId},
+		sessionlimit = #{next} where user_id =#{user_id}
+	</update>
+
+	<select id="checkUserWithSessionKey"
+		resultType="org.spring.domain.UserVO">
+		select * from tbl_user where sessionKey =#{value} and
+		sessionlimit > now();
+	</select>
+
+	<insert id="signUp">
+		insert into tbl_user (user_id, user_pw, user_nick,
+		user_email) values(#{user_id}, MD5(#{user_pw}), #{user_nick},
+		#{user_email})
+	</insert>
+
+	<select id="checkDuplicationId" resultType="org.spring.domain.UserVO">
+		select user_id from tbl_user where user_id =#{user_id}
+	</select>
+
+	<select id="showMyPost" resultType="org.spring.domain.BoardVO">
+	<![CDATA[
+	select bno, category, title, content, user_id,  board_reg_date, view_cnt from tbl_board where bno > 0 and user_id = #{user_id} order by bno desc, board_reg_date desc limit #{pageStart}, #{perPageNum}
+	]]>
+	</select>
+	
+	<select id="showMyInfo" resultType="org.spring.domain.UserVO">
+		select * from tbl_user where user_id = #{user_id}
+	</select>
+	
+	<select id="showAllUser" resultType="org.spring.domain.UserVO">
+		select * from tbl_user;
+	</select>
+	
+	<update id = "updateNickName" >
+		update tbl_user set user_nick = #{user_nick}
+	</update>
+	
+	<update id = "updatePassword" >
+		update tbl_user set user_pw = MD5(#{new_user_pw}) where user_id = #{user_id} and user_pw = #{user_pw}
+	</update>
+	
+	<update id = "deleteUser">
+		delete from tbl_user where user_id= #{user_id}
+	</update>
+	
+	<select id="check_password">
+		select user_password where user_id =#{user_id}
+	</select>
+	
+</mapper>
